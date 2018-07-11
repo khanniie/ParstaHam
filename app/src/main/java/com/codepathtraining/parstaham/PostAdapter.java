@@ -63,7 +63,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         String imageUrl = post.getImage().getUrl();
 
         //load image using glide
-        GlideApp.with(context).load(imageUrl).into(holder.imgPost);
+        GlideApp.with(context).load(imageUrl).centerCrop().into(holder.imgPost);
     }
 
     //returns the total number of items in the list
@@ -86,23 +86,5 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             //lookup view objects by id
             ButterKnife.bind(this, itemView);
         }
-
-//        @Override
-//        public void onClick(View v) {
-//            // gets item position
-//            int position = getAdapterPosition();
-//            // make sure the position is valid, i.e. actually exists in the view
-//            if (position != RecyclerView.NO_POSITION) {
-//                // get the Post at the position, this won't work if the class is static
-//                Post Post = posts.get(position);
-//                // create intent for the new activity
-//                Intent intent = new Intent(context, PostDetailsActivity.class);
-//                // serialize the Post using parceler, use its short name as a key
-//                intent.putExtra(Post.class.getSimpleName(), Parcels.wrap(Post));
-//                intent.putExtra(Config.class.getSimpleName(), Parcels.wrap(config));
-//                // show the activity
-//                context.startActivity(intent);
-//            }
-//        }
     }
 }
