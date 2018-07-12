@@ -1,8 +1,8 @@
-package com.codepathtraining.parstaham;
+package com.codepathtraining.parstaham.Applications;
 
 import android.app.Application;
 
-import com.codepathtraining.parstaham.Model.Post;
+import com.codepathtraining.parstaham.Models.Post;
 import com.parse.Parse;
 import com.parse.ParseObject;
 

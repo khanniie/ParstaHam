@@ -1,4 +1,4 @@
-package com.codepathtraining.parstaham;
+package com.codepathtraining.parstaham.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codepathtraining.parstaham.Model.Post;
+import com.codepathtraining.parstaham.Models.Post;
+import com.codepathtraining.parstaham.R;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;

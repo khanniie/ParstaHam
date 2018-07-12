@@ -1,4 +1,4 @@
-package com.codepathtraining.parstaham.Model;
+package com.codepathtraining.parstaham.Models;
 
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;

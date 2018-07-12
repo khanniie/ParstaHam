@@ -1,5 +1,6 @@
-package com.codepathtraining.parstaham;
+package com.codepathtraining.parstaham.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +8,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
-import com.codepathtraining.parstaham.Model.Post;
+import com.codepathtraining.parstaham.Models.Post;
+import com.codepathtraining.parstaham.Adapters.PostAdapter;
+import com.codepathtraining.parstaham.R;
 import com.parse.FindCallback;
+import com.parse.LogOutCallback;
 import com.parse.ParseException;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +28,13 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<Post> posts;
     private PostAdapter adapter;
     private RecyclerView rvPosts;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        context = this;
 
         rvPosts = findViewById(R.id.rvPosts);
 
@@ -43,6 +51,20 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 makePost();
+            }
+        });
+        findViewById(R.id.btn_logOut).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Logging out now... please wait.", Toast.LENGTH_LONG);
+                ParseUser.logOutInBackground(new LogOutCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        Intent i = new Intent(context, LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                });
             }
         });
 

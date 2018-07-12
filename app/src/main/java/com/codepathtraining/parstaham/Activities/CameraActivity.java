@@ -1,6 +1,6 @@
 
 
-package com.codepathtraining.parstaham;
+package com.codepathtraining.parstaham.Activities;
 
 import android.Manifest;
 import android.content.Context;
@@ -32,6 +32,8 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.codepathtraining.parstaham.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

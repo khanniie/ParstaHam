@@ -1,4 +1,4 @@
-package com.codepathtraining.parstaham.Model;
+package com.codepathtraining.parstaham.Models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseFile;

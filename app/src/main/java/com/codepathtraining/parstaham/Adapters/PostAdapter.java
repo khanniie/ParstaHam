@@ -1,4 +1,4 @@
-package com.codepathtraining.parstaham;
+package com.codepathtraining.parstaham.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,8 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.codepathtraining.parstaham.Model.GlideApp;
-import com.codepathtraining.parstaham.Model.Post;
+import com.codepathtraining.parstaham.Models.GlideApp;
+import com.codepathtraining.parstaham.Models.Post;
+import com.codepathtraining.parstaham.R;
 import com.parse.ParseException;
 
 import java.util.ArrayList;

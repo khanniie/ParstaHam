@@ -1,4 +1,4 @@
-package com.codepathtraining.parstaham;
+package com.codepathtraining.parstaham.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.codepathtraining.parstaham.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText et_username;
     private EditText et_password;
@@ -24,7 +25,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+            Intent i = new Intent(this, HomeActivity.class);
+            startActivity(i);
+            finish();
+        }
+
         context = this;
 
         et_password = findViewById(R.id.et_password);
@@ -51,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 if( e == null){
                     Toast.makeText(context, "Login successful!", Toast.LENGTH_LONG).show();
 
-                    Intent i = new Intent(MainActivity.this, HomeActivity.class);
+                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(i);
                     finish();
                 } else{
