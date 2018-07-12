@@ -23,6 +23,11 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
+    //is this where interfaces go?
+    public interface OnFragmentInteractionListener {
+        void onHomeFragmentInteraction(Uri uri);
+    }
+
     private ArrayList<Post> posts;
     private PostAdapter adapter;
     private RecyclerView rvPosts;
@@ -55,15 +60,8 @@ public class HomeFragment extends Fragment {
         adapter = new PostAdapter(posts);
         rvPosts.setLayoutManager(new LinearLayoutManager(context));
         rvPosts.setAdapter(adapter);
-        FillTimeLine();
+        fillTimeLine();
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onHomeFragmentInteraction(uri);
-        }
     }
 
     @Override
@@ -83,11 +81,7 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        void onHomeFragmentInteraction(Uri uri);
-    }
-
-    private void FillTimeLine(){
+    private void fillTimeLine(){
         final Post.Query postQuery = new Post.Query();
         postQuery.getTop().withUser();
         postQuery.getQuery(Post.class).findInBackground(new FindCallback<Post>() {
@@ -109,8 +103,7 @@ public class HomeFragment extends Fragment {
                             e1.printStackTrace();
                         }
                     }
-                }
-                else{
+                } else{
                     e.printStackTrace();
                 }
             }

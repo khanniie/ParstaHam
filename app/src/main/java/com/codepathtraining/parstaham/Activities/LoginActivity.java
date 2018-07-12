@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            Intent i = new Intent(this, HomeActivity.class);
+            Intent i = new Intent(this, NewHomeActivity.class);
             startActivity(i);
             finish();
         }
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 if( e == null){
                     Toast.makeText(context, "Login successful!", Toast.LENGTH_LONG).show();
 
-                    Intent i = new Intent(LoginActivity.this, HomeActivity.class);
+                    Intent i = new Intent(LoginActivity.this, NewHomeActivity.class);
                     startActivity(i);
                     finish();
                 } else{
