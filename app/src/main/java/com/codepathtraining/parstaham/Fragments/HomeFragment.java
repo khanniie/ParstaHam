@@ -1,9 +1,11 @@
 package com.codepathtraining.parstaham.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,6 +18,7 @@ import com.codepathtraining.parstaham.Models.Post;
 import com.codepathtraining.parstaham.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +28,16 @@ public class HomeFragment extends Fragment {
 
     //is this where interfaces go?
     public interface OnFragmentInteractionListener {
-        void onHomeFragmentInteraction(Uri uri);
+        void onHomeFragmentInteraction(Post post);
+        void onUserProfClicked(ParseUser user);
     }
 
     private ArrayList<Post> posts;
     private PostAdapter adapter;
     private RecyclerView rvPosts;
     private Context context;
+    private SwipeRefreshLayout swipeContainer;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -57,12 +63,29 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         rvPosts = view.findViewById(R.id.rvPosts);
         posts = new ArrayList<>();
-        adapter = new PostAdapter(posts);
+        adapter = new PostAdapter(posts, mListener);
         rvPosts.setLayoutManager(new LinearLayoutManager(context));
         rvPosts.setAdapter(adapter);
         fillTimeLine();
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fillTimeLine();
+            }
+        });
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -82,31 +105,22 @@ public class HomeFragment extends Fragment {
     }
 
     private void fillTimeLine(){
+        final ArrayList<Post> new_posts = new ArrayList<>();
         final Post.Query postQuery = new Post.Query();
         postQuery.getTop().withUser();
         postQuery.getQuery(Post.class).findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> objects, ParseException e) {
                 if(e == null){
-                    for(int i = 0; i < objects.size(); i++){
-                        try {
-                            Log.d("HomeActivity", "Post[" + i + "] = " + objects.get(i).getDescription() +
-                                    "  username = " + objects.get(i).getUser().fetchIfNeeded().getEmail());
-                            Post post = new Post();
-                            post.setUser(objects.get(i).getUser());
-                            post.setDescription(objects.get(i).getDescription());
-                            post.setImage(objects.get(i).getImage());
-                            posts.add(post);
-                            adapter.notifyItemInserted(posts.size() -1);
+                    adapter.clear();
+                    adapter.addAll(objects);
+                    swipeContainer.setRefreshing(false);
 
-                        } catch (ParseException e1) {
-                            e1.printStackTrace();
-                        }
-                    }
                 } else{
                     e.printStackTrace();
                 }
             }
         });
     }
+
 }

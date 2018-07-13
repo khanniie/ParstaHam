@@ -21,15 +21,14 @@
         <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.HomeActivity" />
         <activity android:name=".Activities.MakePostActivity" />
         <activity android:name=".Activities.CameraActivity" />
-        <activity android:name=".Activities.NewHomeActivity">
-
-        </activity>
+        <activity android:name=".Activities.NewHomeActivity"></activity>
+        <activity android:name=".Activities.SignupActivity"></activity>
     </application>
 
 </manifest>

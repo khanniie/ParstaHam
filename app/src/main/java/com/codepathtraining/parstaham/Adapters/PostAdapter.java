@@ -9,12 +9,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.codepathtraining.parstaham.Fragments.HomeFragment;
 import com.codepathtraining.parstaham.Models.GlideApp;
+import com.codepathtraining.parstaham.Models.ImageHelper;
 import com.codepathtraining.parstaham.Models.Post;
 import com.codepathtraining.parstaham.R;
 import com.parse.ParseException;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,10 +30,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     ArrayList<Post> posts;
     //context
     Context context;
+    private SimpleDateFormat formatter;
+    HomeFragment.OnFragmentInteractionListener mListener;
 
     //initialize with list
-    public PostAdapter(ArrayList<Post> posts){
+    public PostAdapter(ArrayList<Post> posts, HomeFragment.OnFragmentInteractionListener listener){
         this.posts = posts;
+        this.mListener = listener;
+        String pattern = "MM/dd/Y";
+        this.formatter = new SimpleDateFormat(pattern);
     }
 
     //creates and inflates a new view
@@ -57,14 +67,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             e.printStackTrace();
         }
 
-        //determine the current orientation
-        //boolean isPortrait = context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+        Date d = post.getCreatedAt();
+        String formattedTime = formatter.format(post.getCreatedAt());
+        holder.tvTime.setText(formattedTime);
 
         //build url for poster image
         String imageUrl = post.getImage().getUrl();
 
         //load image using glide
         GlideApp.with(context).load(imageUrl).centerCrop().into(holder.imgPost);
+
+        ImageHelper.setProfileImage(holder.imgProfile, post.getUser(), context);
     }
 
     //returns the total number of items in the list
@@ -74,6 +87,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     }
 
+    public void clear() {
+        posts.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Post> list) {
+        posts.addAll(list);
+        notifyDataSetChanged();
+    }
+
     //create the viewholder as a static inner class
     public class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -81,11 +105,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         @BindView(R.id.img_post)ImageView imgPost;
         @BindView(R.id.tv_user) TextView tvUser;
         @BindView(R.id.tv_description) TextView tvDescription;
+        @BindView(R.id.tvTime) TextView tvTime;
+        @BindView(R.id.iv_profile) ImageView imgProfile;
+
 
         public ViewHolder(View itemView){
             super(itemView);
             //lookup view objects by id
             ButterKnife.bind(this, itemView);
+            imgPost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onHomeFragmentInteraction(posts.get(getAdapterPosition()));
+                }
+            });
+            imgProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onUserProfClicked(posts.get(getAdapterPosition()).getUser());
+                }
+            });
         }
     }
 }

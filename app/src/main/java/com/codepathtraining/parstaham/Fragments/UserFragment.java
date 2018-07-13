@@ -5,17 +5,32 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codepathtraining.parstaham.Adapters.GridPostAdapter;
+import com.codepathtraining.parstaham.Models.ImageHelper;
+import com.codepathtraining.parstaham.Models.Post;
 import com.codepathtraining.parstaham.R;
+import com.parse.FindCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,11 +42,21 @@ import com.parse.ParseUser;
  */
 public class UserFragment extends Fragment {
 
+    public interface OnFragmentInteractionListener {
+        void OnUserFragmentLogOut();
+        void OnUserFragmentOpenGallery();
+        void OnPostDetailViewClick(Post post);
+    }
+
     private ParseUser mUser;
     private Button btn_logOut;
+    private Button btn_prof_pic;
     private TextView tv_username;
     private TextView tv_bio;
     private Context context;
+    private View view;
+    private ArrayList<Post> mPosts;
+    private GridPostAdapter adapter;
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,12 +88,13 @@ public class UserFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        view = v;
         tv_username = view.findViewById(R.id.tv_username);
         tv_bio = view.findViewById(R.id.tv_bio);
-        //view.findViewById(R.id.img_profile);
         btn_logOut = view.findViewById(R.id.btn_logout);
+        btn_prof_pic = view.findViewById(R.id.btn_prof_pic);
         try {
             tv_username.setText(mUser.fetchIfNeeded().getUsername());
         } catch (ParseException e) {
@@ -84,6 +110,26 @@ public class UserFragment extends Fragment {
                         mListener.OnUserFragmentLogOut();
                     }
                 });
+            }
+        });
+        btn_prof_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.OnUserFragmentOpenGallery();
+            }
+        });
+        ImageHelper.setProfileImage((ImageView)view.findViewById(R.id.img_profile), mUser, context);
+
+        GridView gridview = (GridView) v.findViewById(R.id.gv_posts);
+        mPosts = new ArrayList<>();
+        adapter = new GridPostAdapter(context, mPosts);
+        gridview.setAdapter(adapter);
+        fillTimeLine();
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mListener.OnPostDetailViewClick(mPosts.get(position));
             }
         });
     }
@@ -106,7 +152,40 @@ public class UserFragment extends Fragment {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        void OnUserFragmentLogOut();
+    public void RelaunchAfterGallery(String path){
+        Log.i("workig?","pz;");
+        final ImageView prof_pic = view.findViewById(R.id.img_profile);
+        File file = new File(path);
+        ParseFile pf = new ParseFile(file);
+        final ParseUser user = mUser;
+        user.put("prof_pic", pf);
+        user.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                Log.i("DONE","prof pic uploaded");
+                String imageUrl = user.getParseFile("prof_pic").getUrl();
+                //ImageHelper.loadIntoImgGlide(context, imageUrl, (ImageView)view.findViewById(R.id.img_profile));
+                ImageHelper.setProfileImage((ImageView)view.findViewById(R.id.img_profile), ParseUser.getCurrentUser(), context);
+            }
+        });
+
     }
+
+    private void fillTimeLine(){
+
+        ParseQuery<Post> pq = new ParseQuery(Post.class);
+        pq.getQuery(Post.class).whereEqualTo("user", mUser).findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> objects, ParseException e) {
+                if(e == null){
+                    mPosts.addAll(objects);
+                    adapter.notifyDataSetChanged();
+                } else{
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
 }

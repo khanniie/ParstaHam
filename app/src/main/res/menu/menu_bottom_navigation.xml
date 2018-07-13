@@ -16,7 +16,7 @@
     <item
         android:id="@+id/action_user"
         android:enabled="true"
-        android:icon="@drawable/instagram_user_outline_24"
+        android:icon="@drawable/user"
         android:title=""
         app:showAsAction="ifRoom" />
 </menu>

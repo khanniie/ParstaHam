@@ -16,7 +16,6 @@ import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.v4.app.ActivityCompat;
@@ -32,16 +31,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.codepathtraining.parstaham.Models.ImageHelper;
 import com.codepathtraining.parstaham.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -221,7 +219,7 @@ public class CameraFragment extends Fragment {
                 }
 
                 void save(byte[] bytes) {
-                    File file12 = getOutputMediaFile();
+                    File file12 = ImageHelper.getOutputMediaFile();
                     OutputStream outputStream = null;
                     try {
                         outputStream = new FileOutputStream(file12);
@@ -382,28 +380,26 @@ public class CameraFragment extends Fragment {
             previewSession.setRepeatingRequest(previewBuilder.build(), null, handler);
         }catch (Exception e){}
     }
-    private File getOutputMediaFile() {
-        Toast.makeText(context, "" + Environment
-                .getExternalStorageDirectory(), Toast.LENGTH_LONG).show();
-
-        File mediaStorageDir = new File(
-                Environment
-                        .getExternalStorageDirectory(),
-                "ParsaHam");
-        if (!mediaStorageDir.exists()) {
-            if (!mediaStorageDir.mkdirs()) {
-                Log.d("MyCameraApp", "failed to create directory");
-                return null;
-            }
-        }
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
-                .format(new Date());
-        File mediaFile;
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                + "IMG_" + timeStamp + ".jpg");
-        return mediaFile;
-//        return FileAndPath(mediaFile, mediaStorageDir.getPath() + File.separator
+//    private File getOutputMediaFile() {
+//        Toast.makeText(context, "" + Environment
+//                .getExternalStorageDirectory(), Toast.LENGTH_LONG).show();
+//
+//        File mediaStorageDir = new File(
+//                Environment
+//                        .getExternalStorageDirectory(),
+//                "ParsaHam");
+//        if (!mediaStorageDir.exists()) {
+//            if (!mediaStorageDir.mkdirs()) {
+//                Log.d("MyCameraApp", "failed to create directory");
+//                return null;
+//            }
+//        }
+//        // Create a media file name
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+//                .format(new Date());
+//        File mediaFile;
+//        mediaFile = new File(mediaStorageDir.getPath() + File.separator
 //                + "IMG_" + timeStamp + ".jpg");
-    }
+//        return mediaFile;
+//    }
 }

@@ -5,15 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".Activities.LoginActivity">
+    tools:context=".Activities.SignupActivity">
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="167dp"
+        android:background="@drawable/shaded_rounded"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:padding="13dp"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="179dp" />
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="223dp"
+        android:background="@drawable/shaded_rounded"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        android:padding="13dp"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="179dp" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="313dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="223dp"
+        android:layout_marginBottom="161dp"
         android:background="@drawable/shaded_rounded"
         android:ems="10"
         android:hint="Password"
@@ -29,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="158dp"
+        android:layout_marginTop="231dp"
         android:background="@drawable/shaded_rounded"
         android:ems="10"
         android:hint="Username"
@@ -55,30 +87,21 @@
         android:layout_height="32dp"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/imageView"
-        android:layout_marginBottom="128dp"
+        android:layout_marginBottom="12dp"
         app:srcCompat="@drawable/facebook_logo" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="164dp"
         android:layout_height="33dp"
-        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="11dp"
         android:layout_toEndOf="@+id/imageView2"
         android:fontFamily="Roboto"
         android:gravity="center_vertical"
-        android:text="Log in with Facebook"
+        android:text="Sign up with Facebook"
         android:textColor="@color/white"
         android:textStyle="bold" />
-
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="54dp"
-        android:background="#33FFFFFF"
-        android:paddingBottom="40dp" />
 
     <!--<TextView-->
     <!--android:id="@+id/textView10"-->
@@ -89,61 +112,15 @@
     <!--android:gravity="center_horizontal|center_vertical"-->
     <!--android:textColor="@color/white" />-->
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="0dp"
-            android:layout_marginStart="0dp"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Don't have an account?"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/tv_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="0dp"
-            android:layout_marginStart="0dp"
-            android:text="  Sign up."
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@id/line"
-        android:layout_marginTop="1dp"
-        android:background="#22FFFFFF" />
-
-
 
     <View
         android:id="@+id/line2"
         android:layout_width="135dp"
         android:layout_height="1dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/btn_signup"
-        android:layout_marginBottom="177dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="65dp"
+        android:layout_marginStart="28dp"
         android:background="#33FFFFFF" />
 
     <View
@@ -161,9 +138,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="233dp"
+        android:layout_marginBottom="92dp"
         android:background="@drawable/rounded"
-        android:text="Log in"
+        android:text="SIGN UP"
         android:textAllCaps="false"
         android:textColor="#55FFFFFF"
         android:textSize="20dp"
@@ -176,32 +153,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="167dp"
+        android:layout_marginBottom="58dp"
         android:fontFamily="Robota"
         android:text="OR"
         android:textColor="#FFFFFF"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView3"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="206dp"
-        android:textColor="@color/white"
-        android:text="Forgot your login details?"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_alignTop="@+id/textView4"
-        android:text=" Get help signing in."
-        android:textColor="@color/white"
-        android:textSize="12sp"
         android:textStyle="bold" />
 
 
