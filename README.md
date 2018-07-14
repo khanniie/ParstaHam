@@ -1,4 +1,4 @@
-# Project 3 - *=ParstaHAM*
+# Project 3 - *ParstaHAM*
 
 **ParstaHAM** is a photo sharing app using Parse as its backend.
 
