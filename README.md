@@ -1,8 +1,8 @@
-# Project 3 - *Name of App Here*
+# Project 3 - *=ParstaHAM*
 
-**Name of your app** is a photo sharing app using Parse as its backend.
+**ParstaHAM** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **32** hours spent in total
 
 ## User Stories
 
@@ -19,7 +19,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Style the feed to look like the real Instagram feed.
+- [x] Style the feed to look like the real Instagram feed.
 - [X] User should switch between different tabs - viewing all posts (feed view), capture (camera and photo gallery view) and profile tabs (posts made) using a Bottom Navigation View.
 - [ ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
 - [x] Show the username and creation time for each post
@@ -28,26 +28,32 @@ The following **optional** features are implemented:
    - [x] Allow the logged in user to add a profile photo
    - [x] Display the profile photo with each post
    - [x] Tapping on a post's username or profile photo goes to that user's profile page
-- [ ] User can comment on a post and see all comments for each post in the post details screen.
-- [ ] User can like a post and see number of likes for each post in the post details screen.
+- [x] User can comment on a post and see all comments for each post in the post details screen.
+- [x] User can like a post and see number of likes for each post in the post details screen.
 - [X] Create a custom Camera View on your phone.
-- [ ] Run your app on your phone and use the camera to take the photo
+- [x] Run your app on your phone and use the camera to take the photo (**this is the post with the caption "tarini"**)
 
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [X] User can tap a post to view post details, including timestamp and caption. (this became not required on the last day)
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. INFINITE PAGINATION!!!! The code for it was so destructive for our original code that many people put it off until the end and never had time attempt it.
+2. Better understanding of fragment hiding/showing/removing.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/f4fcmBH.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+https://i.imgur.com/f4fcmBH.gif
+
+
+User page, and details page.
+
+<img src="https://i.imgur.com/ahPv0UJ.gif" title="user page"/>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -56,11 +62,13 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [Android Async Http Client](http://loopj.com/android-async-http/) - networking library
+- Glide
 
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+Time! Time was very diffcult during the assignment. I also ended up running out of time and didn't have time to make my code as clean as I was hoping.
 
 ## License
 
