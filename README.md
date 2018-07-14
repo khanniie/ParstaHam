@@ -1,8 +1,8 @@
-# Project 3 - *Name of App Here*
+# Project 3 - *=ParstaHAM*
 
-**Name of your app** is a photo sharing app using Parse as its backend.
+**ParstaHAM** is a photo sharing app using Parse as its backend.
 
-Time spent: **X** hours spent in total
+Time spent: **32** hours spent in total
 
 ## User Stories
 
@@ -40,14 +40,15 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. INFINITE PAGINATION!!!! The code for it was so destructive for our original code that many people put it off until the end and never had time attempt it.
+2. Better understanding of fragment hiding/showing/removing.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/f4fcmBH.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+https://i.imgur.com/f4fcmBH.gif
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -56,11 +57,13 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [Android Async Http Client](http://loopj.com/android-async-http/) - networking library
+- Glide
 
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+Time! Time was very diffcult during the assignment. I also ended up running out of time and didn't have time to make my code as clean as I was hoping.
 
 ## License
 
