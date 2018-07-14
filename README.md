@@ -19,7 +19,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Style the feed to look like the real Instagram feed.
+- [x] Style the feed to look like the real Instagram feed.
 - [X] User should switch between different tabs - viewing all posts (feed view), capture (camera and photo gallery view) and profile tabs (posts made) using a Bottom Navigation View.
 - [ ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
 - [x] Show the username and creation time for each post
@@ -28,7 +28,7 @@ The following **optional** features are implemented:
    - [x] Allow the logged in user to add a profile photo
    - [x] Display the profile photo with each post
    - [x] Tapping on a post's username or profile photo goes to that user's profile page
-- [ ] User can comment on a post and see all comments for each post in the post details screen.
+- [x] User can comment on a post and see all comments for each post in the post details screen.
 - [x] User can like a post and see number of likes for each post in the post details screen.
 - [X] Create a custom Camera View on your phone.
 - [ ] Run your app on your phone and use the camera to take the photo
