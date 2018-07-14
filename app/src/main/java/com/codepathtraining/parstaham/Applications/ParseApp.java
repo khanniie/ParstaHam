@@ -2,6 +2,8 @@ package com.codepathtraining.parstaham.Applications;
 
 import android.app.Application;
 
+import com.codepathtraining.parstaham.Models.Comment;
+import com.codepathtraining.parstaham.Models.Like;
 import com.codepathtraining.parstaham.Models.Post;
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -14,6 +16,8 @@ public class ParseApp extends Application {
     public void onCreate() {
         super.onCreate();
         ParseObject.registerSubclass(Post.class);
+        ParseObject.registerSubclass(Like.class);
+        ParseObject.registerSubclass(Comment.class);
         // Use for troubleshooting -- remove this line for production
         Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG);
 

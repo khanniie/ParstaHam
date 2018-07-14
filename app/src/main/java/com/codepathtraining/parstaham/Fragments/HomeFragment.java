@@ -21,6 +21,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onHomeFragmentInteraction(Post post);
         void onUserProfClicked(ParseUser user);
+        void onOpenCommentPage(Post post, int pos);
     }
 
     private ArrayList<Post> posts;
@@ -113,6 +115,7 @@ public class HomeFragment extends Fragment {
             public void done(List<Post> objects, ParseException e) {
                 if(e == null){
                     adapter.clear();
+                    Collections.reverse(objects);
                     adapter.addAll(objects);
                     swipeContainer.setRefreshing(false);
 

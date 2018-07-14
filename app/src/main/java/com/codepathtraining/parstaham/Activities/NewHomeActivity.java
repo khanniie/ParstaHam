@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.codepathtraining.parstaham.Fragments.CameraFragment;
+import com.codepathtraining.parstaham.Fragments.CommentFragment;
 import com.codepathtraining.parstaham.Fragments.GalleryFragment;
 import com.codepathtraining.parstaham.Fragments.HomeFragment;
 import com.codepathtraining.parstaham.Fragments.MakePostFragment;
@@ -25,7 +26,8 @@ public class NewHomeActivity extends AppCompatActivity implements HomeFragment.O
                                                                     CameraFragment.OnFragmentInteractionListener,
                                                                     UserFragment.OnFragmentInteractionListener,
                                                                     PostDetailFragment.OnFragmentInteractionListener,
-                                                                    GalleryFragment.OnFragmentInteractionListener{
+                                                                    GalleryFragment.OnFragmentInteractionListener,
+                                                                    CommentFragment.OnFragmentInteractionListener{
     private HomeFragment homeFragment;
     private MakePostFragment makeFragment;
     private CameraFragment cameraFragment;
@@ -82,6 +84,10 @@ public class NewHomeActivity extends AppCompatActivity implements HomeFragment.O
         UserFragment otherUserFragment = UserFragment.newInstance(user);
         displayFragment(otherUserFragment);
     }
+    public void onOpenCommentPage(Post post, int pos){
+        CommentFragment commentFragment = CommentFragment.newInstance(post, pos);
+        displayFragment(commentFragment);
+    }
     //make fragment interface
     public void onMakeFragmentOpenCamera(){
         Log.i("lol", "trying to open camera");
@@ -93,7 +99,7 @@ public class NewHomeActivity extends AppCompatActivity implements HomeFragment.O
     }
     public void onMakeFragmentAfterPost(){
         bottomNavigationView.getMenu().findItem(R.id.action_home).setChecked(true);
-        makeFragment= MakePostFragment.newInstance();
+        //makeFragment= MakePostFragment.newInstance();
         displayFragment(homeFragment);
     }
     //camera fragment interface
@@ -116,6 +122,9 @@ public class NewHomeActivity extends AppCompatActivity implements HomeFragment.O
         displayFragment(detailFragment);
     }
     //detail fragment interface
+    public void onReturnToHome(int count, int array_pos){
+
+    }
     public void onDetailFragmentInteraction(){ }
     //gallery interface
     public void onGalleryFragmentInteraction(String path){
@@ -137,6 +146,7 @@ public class NewHomeActivity extends AppCompatActivity implements HomeFragment.O
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (currentFragment != null && (currentFragment instanceof PostDetailFragment)) { ft.remove(currentFragment); }
         if (currentFragment != null && (currentFragment instanceof UserFragment)) { ft.remove(currentFragment); }
+        if (currentFragment != null && (currentFragment instanceof CommentFragment)) { ft.remove(currentFragment); }
         if (homeFragment.isAdded()) { ft.hide(homeFragment); }
         if (makeFragment.isAdded()) { ft.hide(makeFragment); }
         if (userFragment.isAdded()) { ft.remove(userFragment); }

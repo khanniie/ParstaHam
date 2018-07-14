@@ -94,7 +94,13 @@ public class UserFragment extends Fragment {
         tv_username = view.findViewById(R.id.tv_username);
         tv_bio = view.findViewById(R.id.tv_bio);
         btn_logOut = view.findViewById(R.id.btn_logout);
+
         btn_prof_pic = view.findViewById(R.id.btn_prof_pic);
+
+        if(mUser != ParseUser.getCurrentUser()){
+            btn_logOut.setVisibility(View.INVISIBLE);
+            btn_prof_pic.setVisibility(View.INVISIBLE);
+        }
         try {
             tv_username.setText(mUser.fetchIfNeeded().getUsername());
         } catch (ParseException e) {

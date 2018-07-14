@@ -89,7 +89,7 @@ public class ImageHelper {
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             Matrix matrix = new Matrix();
             //TODO fix this rotation thing
-            matrix.postRotate(rotate);
+            matrix.postRotate(90);
             Bitmap rotatedBitmap = Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(), myBitmap.getHeight(), matrix, true);
             view.setImageBitmap(rotatedBitmap);
         }
