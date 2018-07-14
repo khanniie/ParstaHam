@@ -42,15 +42,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CameraFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CameraFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CameraFragment extends Fragment {
+
+    public interface OnFragmentInteractionListener {
+        void onCameraFragmentInteraction(String path);
+    }
 
     private Size previewsize;
     private Context context;
@@ -166,11 +162,6 @@ public class CameraFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onCameraFragmentInteraction(String path);
     }
 
     void getPicture() {
@@ -380,26 +371,4 @@ public class CameraFragment extends Fragment {
             previewSession.setRepeatingRequest(previewBuilder.build(), null, handler);
         }catch (Exception e){}
     }
-//    private File getOutputMediaFile() {
-//        Toast.makeText(context, "" + Environment
-//                .getExternalStorageDirectory(), Toast.LENGTH_LONG).show();
-//
-//        File mediaStorageDir = new File(
-//                Environment
-//                        .getExternalStorageDirectory(),
-//                "ParsaHam");
-//        if (!mediaStorageDir.exists()) {
-//            if (!mediaStorageDir.mkdirs()) {
-//                Log.d("MyCameraApp", "failed to create directory");
-//                return null;
-//            }
-//        }
-//        // Create a media file name
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
-//                .format(new Date());
-//        File mediaFile;
-//        mediaFile = new File(mediaStorageDir.getPath() + File.separator
-//                + "IMG_" + timeStamp + ".jpg");
-//        return mediaFile;
-//    }
 }

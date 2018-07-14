@@ -148,32 +148,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
   public class ViewHolder extends RecyclerView.ViewHolder {
 
     // track view objects
-    @BindView(R.id.img_post)
-    ImageView imgPost;
+    @BindView(R.id.img_post) ImageView imgPost;
 
-    @BindView(R.id.tv_user)
-    TextView tvUser;
+    @BindView(R.id.tv_user) TextView tvUser;
 
-    @BindView(R.id.tv_description)
-    TextView tvDescription;
+    @BindView(R.id.tv_description) TextView tvDescription;
 
-    @BindView(R.id.tvTime)
-    TextView tvTime;
+    @BindView(R.id.tvTime) TextView tvTime;
 
-    @BindView(R.id.iv_profile)
-    ImageView imgProfile;
+    @BindView(R.id.iv_profile) ImageView imgProfile;
 
-    @BindView(R.id.btn_like)
-    ImageButton btnLike;
+    @BindView(R.id.btn_like) ImageButton btnLike;
 
-    @BindView(R.id.btn_comment)
-    ImageButton btnComment;
+    @BindView(R.id.btn_comment) ImageButton btnComment;
 
-    @BindView(R.id.tv_likeCount)
-    TextView tv_likeCount;
+    @BindView(R.id.tv_likeCount) TextView tv_likeCount;
 
-    @BindView(R.id.tv_commentCount)
-      TextView tv_commentCount;
+    @BindView(R.id.tv_commentCount) TextView tv_commentCount;
 
       public ViewHolder(View itemView) {
       super(itemView);

@@ -6,7 +6,6 @@ import com.parse.ParseUser;
 
 @ParseClassName("Comment")
 public class Comment extends ParseObject {
-    // ...
 
     // Associate each comment with a user
     public void setOwner(ParseUser user) {

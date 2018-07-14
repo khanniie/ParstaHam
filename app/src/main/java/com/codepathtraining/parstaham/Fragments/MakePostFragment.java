@@ -28,6 +28,12 @@ import java.io.File;
 
 public class MakePostFragment extends Fragment {
 
+    public interface OnFragmentInteractionListener {
+        void onMakeFragmentAfterPost();
+        void onMakeFragmentOpenCamera();
+        void onMakeFragmentOpenGallery();
+    }
+
     private OnFragmentInteractionListener mListener;
     private FrameLayout frame;
     private TextView tv_notify;
@@ -61,7 +67,7 @@ public class MakePostFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_make_post, container, false);
         frame = v.findViewById(R.id.img_frame);
-        tv_notify = v.findViewById(R.id.tv_notify);
+        //tv_notify = v.findViewById(R.id.tv_notify);
         iv_post = v.findViewById(R.id.iv_post);
         description_et = v.findViewById(R.id.description_et);
         btn_camera = v.findViewById(R.id.btn_camera);
@@ -128,12 +134,6 @@ public class MakePostFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onMakeFragmentAfterPost();
-        void onMakeFragmentOpenCamera();
-        void onMakeFragmentOpenGallery();
     }
 
     public void RelaunchAfterCamera(String path) {

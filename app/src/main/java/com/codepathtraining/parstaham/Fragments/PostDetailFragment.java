@@ -21,6 +21,9 @@ import java.util.Date;
 
 
 public class PostDetailFragment extends Fragment {
+    public interface OnFragmentInteractionListener {
+        void onDetailFragmentInteraction();
+    }
 
     private Post post;
     private ImageView img_post;
@@ -101,7 +104,5 @@ public class PostDetailFragment extends Fragment {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        void onDetailFragmentInteraction();
-    }
+
 }

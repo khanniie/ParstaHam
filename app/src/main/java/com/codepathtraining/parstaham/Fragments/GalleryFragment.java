@@ -24,15 +24,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link GalleryFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link GalleryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class GalleryFragment extends Fragment {
+
+    public interface OnFragmentInteractionListener {
+        void onGalleryFragmentInteraction(String path);
+    }
 
     private Context context;
     private ImageView iv;
@@ -90,11 +86,6 @@ public class GalleryFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    public interface OnFragmentInteractionListener {
-        void onGalleryFragmentInteraction(String path);
-    }
-
     // Trigger gallery selection for a photo
     public void onPickPhoto(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK,
