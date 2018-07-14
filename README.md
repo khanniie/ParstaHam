@@ -52,6 +52,7 @@ https://i.imgur.com/f4fcmBH.gif
 
 
 User page, and details page.
+
 <img src="https://i.imgur.com/ahPv0UJ.gif" title="user page"/>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
